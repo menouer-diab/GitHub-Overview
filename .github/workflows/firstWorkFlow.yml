@@ -1,4 +1,6 @@
 name: first workflow
+env:
+  WORKFLOW_VAR: "This variable is declared at the workflow level"
 
 on:
   workflow_dispatch:
@@ -23,6 +25,9 @@ jobs:
         
   seconjob:
     runs-on: ubuntu-latest
+    needs: firstjob
+    env:
+      JOB_VAR: "This is a job variable"
     steps:
       - name: secondJob script
         shell: bash
